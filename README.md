@@ -6,12 +6,12 @@
 [![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)]()
 [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](discordapp.com/users/1209354082033344552)
 
-![VituColombo GitHub stats](https://github-readme-stats.vercel.app/api?username=VituColombo0&show_icons=true&theme=synthwave)![](https://github-readme-streak-stats.herokuapp.com/?user=VituColombo0&theme=dark&hide_border=false)<br/>
+![VituColombo GitHub stats](https://github-readme-stats.vercel.app/api?username=VituColombo0&show_icons=true&theme=synthwave)
+![](https://github-readme-streak-stats.herokuapp.com/?user=VituColombo0&theme=dark&hide_border=false)<br/>
 
 ## I'm interested in studying:
 <div style="display: inline_block"><br/>
 <img align='center' alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" /></div>
-
 <div style="display: inline_block"></>
 <img align='center' alt="Shell Script" src="https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" /></div>
 <div style="display: inline_block"></>

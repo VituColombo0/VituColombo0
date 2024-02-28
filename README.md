@@ -22,12 +22,3 @@
 <img align='center' alt="HackerEarth" src="https://img.shields.io/badge/HackerEarth-%232C3454.svg?&style=for-the-badge&logo=HackerEarth&logoColor=Blue" /></div><br/>
 
 ![snake gif](https://github.com/VituColombo0/VituColombo0/blob/output/github-contribution-grid-snake.gif)
-
-<div align="right">
-  <img src="https://profile-counter.glitch.me/VituColombo0/count.svg?"  />
-</div>
-
-
-
-
-

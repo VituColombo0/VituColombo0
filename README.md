@@ -1,5 +1,5 @@
 ### Olá 👋 Seja bem vindo!
-![snake gif](https://github.com/your-user-name/your-user-name/blob/output/github-contribution-grid-snake.gif)
+![snake gif](https://github.com/VituColombo0/VituColombo0/blob/output/github-contribution-grid-snake.gif)
 
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:victorcolombo03@gmail.com?subject=&body=)
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bzdy4dAJKRXa0KXXjlVPnaA%3D%3D)

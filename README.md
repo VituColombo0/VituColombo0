@@ -1,6 +1,8 @@
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Madimi+One&pause=1000&color=87CEEB&random=false&width=435&lines=Hello%2C+my+name+is+Victor+Colombo;Information+security+enthusiast;Focusing+on+pentest+and+bugbounty;Be+welcome!+%F0%9F%90%B1%E2%80%8D%F0%9F%92%BB)](https://git.io/typing-svg)
 
 ---
+## Where can you find me:
+
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:victorcolombo03@gmail.com?subject=&body=)
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bzdy4dAJKRXa0KXXjlVPnaA%3D%3D)
 [![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)]()

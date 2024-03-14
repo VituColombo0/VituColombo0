@@ -1,4 +1,4 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=300&size=50&duration=4000&pause=1000&color=836FFF&center=true&vCenter=true&random=false&width=1000&lines=Hello%2C+my+name+is+Victor;Information+security+enthusiast;focusing+on+Pentest+and+BugBounty;I'm+from+Brazil;be+welcome+🐱‍💻)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=300&size=50&duration=4000&pause=1000&color=87CEEB&center=true&vCenter=true&random=false&width=1000&lines=Hello%2C+my+name+is+Victor;Information+security+enthusiast;focusing+on+Pentest+and+BugBounty;be+welcome+🐱‍💻)](https://git.io/typing-svg)
 
 ---
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:victorcolombo03@gmail.com?subject=&body=)
@@ -6,8 +6,8 @@
 [![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)]()
 [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](discordapp.com/users/1209354082033344552)
 
-![VituColombo GitHub stats](https://github-readme-stats.vercel.app/api?username=VituColombo0&show_icons=true&theme=synthwave)
-![](https://github-readme-streak-stats.herokuapp.com/?user=VituColombo0&theme=dark&hide_border=false)<br/>
+![VituColombo GitHub stats](https://github-readme-stats.vercel.app/api?username=VituColombo0&show_icons=true&theme=tokyonight)
+[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=VituColombo0&theme=tokyonight&locale=pt_BR&date_format=n%2Fj%5B%2FY%5D&card_width=500)](https://git.io/streak-stats)<br/>
 
 ## I'm interested in studying:
 <div style="display: inline_block"></>

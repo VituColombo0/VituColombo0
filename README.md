@@ -1,5 +1,5 @@
-## Hello 👋 Welcome!
-### Entusiasta na área de segurança da informação, com foco em pentest e bug bounty 🐱‍💻
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=300&size=50&duration=4000&pause=1000&color=836FFF&center=true&vCenter=true&random=false&width=1000&lines=Hello%2C+my+name+is+Victor;Information+security+enthusiast;focusing+on+Pentest+and+BugBounty;I'm+from+Brazil;be+welcome+🐱‍💻)](https://git.io/typing-svg)
+
 ---
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:victorcolombo03@gmail.com?subject=&body=)
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bzdy4dAJKRXa0KXXjlVPnaA%3D%3D)

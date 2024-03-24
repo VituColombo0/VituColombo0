@@ -1,4 +1,4 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Madimi+One&pause=1000&color=87CEEB&random=false&width=435&lines=Hello%2C+my+name+is+Victor+Colombo;Information+security+enthusiast;Focusing+on+pentest+and+bugbounty;Be+welcome!+%F0%9F%90%B1%E2%80%8D%F0%9F%92%BB)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Madimi+One&pause=1000&color=87CEEB&random=false&width=435&lines=Hello%2C+my+name+is+Victor+Colombo;Information+security+enthusiast;Computer+engineering+student;Be+welcome!+%F0%9F%90%B1%E2%80%8D%F0%9F%92%BB)](https://git.io/typing-svg)
 
 ---
 ## Where can you find me:

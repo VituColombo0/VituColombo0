@@ -1,4 +1,6 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Madimi+One&pause=1000&color=87CEEB&random=false&width=435&lines=Hello%2C+my+name+is+Victor+Colombo;Information+security+enthusiast;Computer+engineering+student;Be+welcome!+%F0%9F%90%B1%E2%80%8D%F0%9F%92%BB)](https://git.io/typing-svg)
+<div align="center">
+
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=400&color=00FF41&background=00000000&center=true&vCenter=true&width=700&lines=%24+whoami;Victor+Colombo;Pentester;AI+Security+Engineer;Intrusion+Detection+%7C+Offensive/Defensive+Security;Machine+Learning/Deep+Learning/Neural+Networks;+%E2%9C%94)](https://git.io/typing-svg)
 
 ---
 ## Where can you find me:

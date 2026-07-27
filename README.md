@@ -1,10 +1,5 @@
 <div align="center">
 
-<!-- ===== PROFILE PHOTO ===== -->
-<img src="https://avatars.githubusercontent.com/u/161251705?v=4" width="180" style="border-radius: 50%;" alt="Victor Colombo"/>
-
-<br/>
-
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=400&color=00FF41&background=00000000&center=true&vCenter=true&width=700&lines=%24+whoami;Victor+Colombo;Pentester;AI+Security+Engineer;Intrusion+Detection+%7C+Offensive/Defensive+Security;Machine+Learning/Deep+Learning/Neural+Networks;+%E2%9C%94)](https://git.io/typing-svg)
 
 
@@ -63,14 +58,6 @@
 </div>
 <br/>
 
-<!-- ===== CONTRIBUTION SNAKE ===== -->
+![snake gif](https://github.com/VituColombo0/VituColombo0/blob/output/github-contribution-grid-snake.gif)
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/VituColombo0/VituColombo0/output/snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/VituColombo0/VituColombo0/output/snake-light.svg" />
-  <img alt="Snake eating my contributions" src="https://raw.githubusercontent.com/VituColombo0/VituColombo0/output/snake-light.svg" />
-</picture>
 
-<!-- ===== END SNAKE ===== -->
-
-</div>

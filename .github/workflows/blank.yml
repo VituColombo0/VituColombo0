@@ -1,41 +1,36 @@
 # GitHub Action for generating a contribution graph with a snake eating your contributions.
 
-# ![snake gif](https://github.com/your-user-name/your-user-name/blob/output/github-contribution-grid-snake.gif)
-
 name: Generate Snake
 
-# Controls when the action will run.
 on:
   schedule:
-      # every 12 hours
     - cron: "0 */12 * * *"
 
-  # This command allows us to run the Action automatically from the Actions tab.
   workflow_dispatch:
-  
-  # Also run on every push on the master branch
+
   push:
     branches:
     - main
 
-# The sequence of runs in this workflow:
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Clone repo
         uses: actions/checkout@v3
-    
+
       - name: Generate the snake files in './dist/'
-        uses: Platane/snk@v3
+        uses: Platane/snk/svg-only@v3
         id: snake-gif
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
+            dist/snake-light.svg?color_snake=%230891B2&color_dots=#ebedf0,#9be9a8,#40c463,#30a14e,#216e39
+            dist/snake-dark.svg?color_snake=%2300FF41&color_dots=#161b22,#0e4429,#006d32,#26a641,#39d353
             dist/github-contribution-grid-snake.gif
             dist/github-contribution-grid-snake.svg
         env:

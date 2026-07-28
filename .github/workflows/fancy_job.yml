@@ -2,9 +2,9 @@ name: Fancy Job - Daily Commit Streak
 
 on:
   schedule:
-    # Runs every day at a random-ish time (6 AM UTC)
+    # Runs every day at 6 AM UTC (3 AM BRT)
     - cron: "0 6 * * *"
-  
+
   # Allows manual trigger from the Actions tab
   workflow_dispatch:
 
@@ -18,27 +18,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Increment number and commit
+      - name: Increment number with random commits
         run: |
-          # Read current number
-          CURRENT=$(cat number.txt)
-          # Increment
-          NEW=$((CURRENT + 1))
-          # Write new number
-          echo $NEW > number.txt
-          
-          echo "Updated number from $CURRENT to $NEW"
+          git config --local user.email "161251705+VituColombo0@users.noreply.github.com"
+          git config --local user.name "VituColombo0"
 
-      - name: Commit and push changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add number.txt
-          DATE=$(date +%Y-%m-%d)
-          git commit -m "Update number: $DATE"
-          git push
+          # Random number of commits (1 to 10) for varied green intensity
+          COMMITS=$(( (RANDOM % 10) + 1 ))
+          echo "Will make $COMMITS commit(s) today"
+
+          for i in $(seq 1 $COMMITS); do
+            # Read current number
+            CURRENT=$(cat number.txt)
+            # Increment
+            NEW=$((CURRENT + 1))
+            # Write new number
+            echo $NEW > number.txt
+
+            git add number.txt
+            DATE=$(date +%Y-%m-%d)
+            git commit -m "Update number to $NEW: $DATE"
+
+            # Small delay between commits to ensure different timestamps
+            sleep 1
+          done
+
+          echo "Completed $COMMITS commits"
+
+      - name: Push changes
+        run: git push

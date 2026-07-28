@@ -13,7 +13,7 @@
 <circle cx="58" cy="18" r="5.5" fill="#22C55E"/>
 
 <!-- Title bar text -->
-<text x="190.0" y="22" text-anchor="middle" fill="#94A3B8" font-size="11" font-family="'JetBrains Mono',monospace">victorvcolombo0@gmail.com · % ./profile.sh --live</text>
+<text x="190.0" y="22" text-anchor="middle" fill="#94A3B8" font-size="11" font-family="'JetBrains Mono',monospace">~ % ./profile.sh</text>
 
 <!-- Separator -->
 <line x1="0" y1="35" x2="380" y2="35" stroke="#1E293B" stroke-width="0.5"/>

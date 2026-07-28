@@ -6,9 +6,7 @@
 </picture>
 </div>
 
-<div align="center">
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=VituColombo0&theme=tokyonight&locale=pt_BR&date_format=n%2Fj%5B%2FY%5D&card_width=500)](https://git.io/streak-stats)
-</div>
+
 
 <div align="center">
 <img src="https://capsule-render.vercel.app/api?type=rect&color=70A5FD&height=2"/>

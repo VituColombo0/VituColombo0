@@ -1,15 +1,14 @@
 <div align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/profile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/profile-light.svg">
+  <img src="assets/profile-dark.svg" alt="Victor Colombo Profile Banner">
+</picture>
+</div>
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=400&color=00FF41&background=00000000&center=true&vCenter=true&width=700&lines=%24+whoami;Victor+Colombo;Pentester;AI+Security+Engineer;Intrusion+Detection+%7C+Offensive/Defensive+Security;Machine+Learning/Deep+Learning/Neural+Networks;+%E2%9C%94)](https://git.io/typing-svg)
-
-
-## Where can you find me:
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:victorvcolombo0@gmail.com?subject=&body=)
-[![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bzdy4dAJKRXa0KXXjlVPnaA%3D%3D)
-
-
-![VituColombo GitHub stats](https://github-readme-stats.vercel.app/api?username=VituColombo0&show_icons=true&theme=tokyonight)
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=VituColombo0&theme=tokyonight&locale=pt_BR&date_format=n%2Fj%5B%2FY%5D&card_width=500)](https://git.io/streak-stats)<br/>
+<div align="center">
+[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=VituColombo0&theme=tokyonight&locale=pt_BR&date_format=n%2Fj%5B%2FY%5D&card_width=500)](https://git.io/streak-stats)
+</div>
 
 <div align="center">
 <img src="https://capsule-render.vercel.app/api?type=rect&color=70A5FD&height=2"/>

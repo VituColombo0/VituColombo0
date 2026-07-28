@@ -1,8 +1,8 @@
 <div align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/profile-dark.svg?v=4">
-  <source media="(prefers-color-scheme: light)" srcset="assets/profile-light.svg?v=4">
-  <img src="assets/profile-dark.svg?v=4" alt="Victor Colombo Profile Banner">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/profile-dark.svg?v=5">
+  <source media="(prefers-color-scheme: light)" srcset="assets/profile-light.svg?v=5">
+  <img src="assets/profile-dark.svg?v=5" alt="Victor Colombo Profile Banner">
 </picture>
 </div>
 

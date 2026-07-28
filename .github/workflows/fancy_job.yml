@@ -23,27 +23,33 @@ jobs:
           git config --local user.email "161251705+VituColombo0@users.noreply.github.com"
           git config --local user.name "VituColombo0"
 
+          # ~25% chance to skip the day entirely (averages 1-2 skips per week)
+          SKIP_ROLL=$(( RANDOM % 4 ))
+          if [ "$SKIP_ROLL" -eq 0 ]; then
+            echo "Skipping today — rest day"
+            exit 0
+          fi
+
           # Random number of commits (1 to 10) for varied green intensity
           COMMITS=$(( (RANDOM % 10) + 1 ))
           echo "Will make $COMMITS commit(s) today"
 
           for i in $(seq 1 $COMMITS); do
-            # Read current number
             CURRENT=$(cat number.txt)
-            # Increment
             NEW=$((CURRENT + 1))
-            # Write new number
             echo $NEW > number.txt
 
             git add number.txt
             DATE=$(date +%Y-%m-%d)
             git commit -m "Update number to $NEW: $DATE"
 
-            # Small delay between commits to ensure different timestamps
             sleep 1
           done
 
           echo "Completed $COMMITS commits"
 
       - name: Push changes
-        run: git push
+        if: success()
+        run: |
+          # Only push if there are commits to push
+          git diff --quiet origin/main..HEAD || git push

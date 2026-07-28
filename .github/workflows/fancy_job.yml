@@ -1,0 +1,44 @@
+name: Fancy Job - Daily Commit Streak
+
+on:
+  schedule:
+    # Runs every day at a random-ish time (6 AM UTC)
+    - cron: "0 6 * * *"
+  
+  # Allows manual trigger from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  update-number:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Increment number and commit
+        run: |
+          # Read current number
+          CURRENT=$(cat number.txt)
+          # Increment
+          NEW=$((CURRENT + 1))
+          # Write new number
+          echo $NEW > number.txt
+          
+          echo "Updated number from $CURRENT to $NEW"
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add number.txt
+          DATE=$(date +%Y-%m-%d)
+          git commit -m "Update number: $DATE"
+          git push

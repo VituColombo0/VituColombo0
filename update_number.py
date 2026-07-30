@@ -6,6 +6,7 @@ mensagens variadas e horários aleatórios).
 """
 
 import os
+import sys
 import random
 import subprocess
 import logging
@@ -19,6 +20,7 @@ os.chdir(SCRIPT_DIR)
 
 NUMBER_FILE = "number.txt"
 LOG_FILE = os.path.join(SCRIPT_DIR, "bot.log")
+LAST_RUN_FILE = os.path.join(SCRIPT_DIR, ".last_run")
 
 # Chance de pular o dia inteiro (simula dia de descanso) — 15%
 SKIP_CHANCE = 0.15
@@ -139,13 +141,35 @@ def update_cron_with_random_time() -> None:
     log.info("Próxima execução agendada para %02d:%02d.", random_hour, random_minute)
 
 
+def already_ran_today() -> bool:
+    """Verifica se o bot já fez commits com sucesso hoje."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    if os.path.exists(LAST_RUN_FILE):
+        with open(LAST_RUN_FILE, "r") as f:
+            last_date = f.read().strip()
+        return last_date == today
+    return False
+
+
+def save_run_date() -> None:
+    """Salva a data de hoje como última execução bem-sucedida."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    with open(LAST_RUN_FILE, "w") as f:
+        f.write(today)
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
-def main() -> None:
+def main(catch_up: bool = False) -> None:
     log.info("=" * 50)
-    log.info("Bot iniciado.")
+    log.info("Bot iniciado.%s", " (modo catch-up)" if catch_up else "")
+
+    # 0. Em modo catch-up, verificar se já rodou hoje
+    if catch_up and already_ran_today():
+        log.info("Catch-up: bot já rodou hoje. Nada a fazer.")
+        return
 
     # 1. Dia de descanso?
     if random.random() < SKIP_CHANCE:
@@ -180,6 +204,7 @@ def main() -> None:
     if commits_done > 0:
         if git_push():
             log.info("Push realizado com sucesso (%d commits).", commits_done)
+            save_run_date()
         else:
             log.error("Push falhou após %d commits.", commits_done)
     else:
@@ -193,8 +218,9 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    is_catch_up = "--catch-up" in sys.argv
     try:
-        main()
+        main(catch_up=is_catch_up)
     except Exception as e:
         log.exception("Erro fatal: %s", e)
         # Mesmo com erro, tenta reagendar para não morrer para sempre

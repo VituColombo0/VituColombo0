@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
 GitHub Activity Bot — mantém o gráfico de contribuições ativo
-com comportamento realista (dias de descanso, múltiplos commits,
-mensagens variadas e horários aleatórios).
+com comportamento realista modificando arquivos de um projeto falso.
 """
 
 import os
@@ -10,6 +9,7 @@ import sys
 import random
 import subprocess
 import logging
+import json
 from datetime import datetime
 
 # ---------------------------------------------------------------------------
@@ -18,39 +18,46 @@ from datetime import datetime
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 os.chdir(SCRIPT_DIR)
 
-NUMBER_FILE = "number.txt"
 LOG_FILE = os.path.join(SCRIPT_DIR, "bot.log")
 LAST_RUN_FILE = os.path.join(SCRIPT_DIR, ".last_run")
 
-# Chance de pular o dia inteiro (simula dia de descanso) — 15%
-SKIP_CHANCE = 0.15
+# Faixa de commits por execução (mínimo, máximo) - "Médias e Fortes"
+MIN_COMMITS = 4
+MAX_COMMITS = 10
 
-# Faixa de commits por execução (mínimo, máximo)
-MIN_COMMITS = 1
-MAX_COMMITS = 5
-
-# Mensagens de commit realistas (escolhidas aleatoriamente)
-COMMIT_MESSAGES = [
-    "refactor: clean up legacy code",
-    "chore: update dependencies",
-    "fix: resolve minor edge case",
-    "docs: improve inline documentation",
-    "style: format code for consistency",
-    "chore: bump version number",
-    "fix: correct off-by-one error",
-    "refactor: simplify logic flow",
-    "chore: remove unused imports",
-    "docs: update changelog",
-    "fix: handle null pointer exception",
-    "style: normalize whitespace",
-    "chore: sync configuration files",
-    "refactor: extract utility function",
-    "fix: patch regression in parser",
-    "docs: add usage examples",
-    "chore: reorganize project structure",
-    "fix: resolve encoding issue",
-    "style: apply linter suggestions",
-    "refactor: improve error handling",
+# Projetos falsos para modificação realista
+PROJECT_FILES = [
+    {
+        "path": "src/parser.py",
+        "type": "python",
+        "messages": [
+            "fix: patch regression in parser",
+            "refactor: simplify logic flow",
+            "fix: correct off-by-one error",
+            "style: apply linter suggestions",
+            "fix: handle null pointer exception",
+        ]
+    },
+    {
+        "path": "config/settings.json",
+        "type": "json",
+        "messages": [
+            "chore: sync configuration files",
+            "chore: update dependencies",
+            "chore: bump version number",
+            "chore: reorganize project structure",
+        ]
+    },
+    {
+        "path": "docs/setup.md",
+        "type": "markdown",
+        "messages": [
+            "docs: update changelog",
+            "docs: improve inline documentation",
+            "docs: add usage examples",
+            "style: format code for consistency",
+        ]
+    }
 ]
 
 # ---------------------------------------------------------------------------
@@ -71,14 +78,58 @@ log = logging.getLogger(__name__)
 # Helpers
 # ---------------------------------------------------------------------------
 
-def read_number() -> int:
-    with open(NUMBER_FILE, "r") as f:
-        return int(f.read().strip())
+def modify_file(file_info: dict) -> str:
+    """Modifica levemente o arquivo para gerar um diff."""
+    path = os.path.join(SCRIPT_DIR, file_info["path"])
+    file_type = file_info["type"]
+    
+    if not os.path.exists(path):
+        # Cria se não existir
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        if file_type == "json":
+            with open(path, "w") as f:
+                json.dump({"version": "1.0.0", "last_updated": ""}, f)
+        elif file_type == "python":
+            with open(path, "w") as f:
+                f.write("def parse(data):\n    pass\n\n# Rev: 0\n")
+        elif file_type == "markdown":
+            with open(path, "w") as f:
+                f.write("# Setup\n\nInstruções...\n\n<!-- Rev: 0 -->\n")
 
+    timestamp = datetime.now().isoformat()
+    
+    # Modificação real
+    if file_type == "json":
+        try:
+            with open(path, "r") as f:
+                data = json.load(f)
+        except Exception:
+            data = {"version": "1.0.0"}
+        data["last_updated"] = timestamp
+        with open(path, "w") as f:
+            json.dump(data, f, indent=2)
+            
+    elif file_type == "python":
+        with open(path, "r") as f:
+            lines = f.readlines()
+        with open(path, "w") as f:
+            for line in lines:
+                if line.startswith("# Rev:"):
+                    f.write(f"# Rev: {timestamp}\n")
+                else:
+                    f.write(line)
+                    
+    elif file_type == "markdown":
+        with open(path, "r") as f:
+            lines = f.readlines()
+        with open(path, "w") as f:
+            for line in lines:
+                if line.startswith("<!-- Rev:"):
+                    f.write(f"<!-- Rev: {timestamp} -->\n")
+                else:
+                    f.write(line)
 
-def write_number(num: int) -> None:
-    with open(NUMBER_FILE, "w") as f:
-        f.write(str(num))
+    return file_info["path"]
 
 
 def git_pull() -> bool:
@@ -93,8 +144,8 @@ def git_pull() -> bool:
     return True
 
 
-def git_commit(message: str) -> bool:
-    subprocess.run(["git", "add", NUMBER_FILE], check=True)
+def git_commit(filepath: str, message: str) -> bool:
+    subprocess.run(["git", "add", filepath], check=True)
     result = subprocess.run(
         ["git", "commit", "-m", message],
         capture_output=True, text=True,
@@ -111,34 +162,6 @@ def git_push() -> bool:
         log.error("git push falhou: %s", result.stderr.strip())
         return False
     return True
-
-
-def update_cron_with_random_time() -> None:
-    """Reagenda a próxima execução para um horário aleatório amanhã."""
-    random_hour = random.randint(0, 23)
-    random_minute = random.randint(0, 59)
-
-    new_entry = (
-        f"{random_minute} {random_hour} * * * "
-        f"cd {SCRIPT_DIR} && python3 {os.path.join(SCRIPT_DIR, 'update_number.py')}\n"
-    )
-
-    cron_tmp = "/tmp/current_cron"
-    os.system(f"crontab -l > {cron_tmp} 2>/dev/null || true")
-
-    with open(cron_tmp, "r") as f:
-        lines = f.readlines()
-
-    with open(cron_tmp, "w") as f:
-        for line in lines:
-            if "update_number.py" not in line:
-                f.write(line)
-        f.write(new_entry)
-
-    os.system(f"crontab {cron_tmp}")
-    os.remove(cron_tmp)
-
-    log.info("Próxima execução agendada para %02d:%02d.", random_hour, random_minute)
 
 
 def already_ran_today() -> bool:
@@ -162,43 +185,40 @@ def save_run_date() -> None:
 # Main
 # ---------------------------------------------------------------------------
 
-def main(catch_up: bool = False) -> None:
+def main() -> None:
     log.info("=" * 50)
-    log.info("Bot iniciado.%s", " (modo catch-up)" if catch_up else "")
+    log.info("Bot iniciado.")
 
-    # 0. Em modo catch-up, verificar se já rodou hoje
-    if catch_up and already_ran_today():
-        log.info("Catch-up: bot já rodou hoje. Nada a fazer.")
-        return
-
-    # 1. Dia de descanso?
-    if random.random() < SKIP_CHANCE:
-        log.info("Hoje é dia de descanso — nenhum commit será feito.")
-        update_cron_with_random_time()
+    # 1. Checa se já rodou hoje
+    if already_ran_today():
+        log.info("Bot já rodou hoje. Nada a fazer.")
         return
 
     # 2. Sincronizar com o remoto
     if not git_pull():
         log.error("Falha no git pull. Abortando para evitar conflitos.")
-        update_cron_with_random_time()
         return
 
-    # 3. Quantidade aleatória de commits
+    # 3. Quantidade aleatória de commits (fortes/médias)
     num_commits = random.randint(MIN_COMMITS, MAX_COMMITS)
     log.info("Commits planejados para hoje: %d", num_commits)
 
-    current = read_number()
     commits_done = 0
 
     for i in range(num_commits):
-        current += 1
-        write_number(current)
+        # Escolhe um arquivo aleatório do projeto falso
+        file_info = random.choice(PROJECT_FILES)
+        
+        # Modifica o arquivo para gerar um diff
+        filepath = modify_file(file_info)
 
-        message = random.choice(COMMIT_MESSAGES)
-        if git_commit(message):
+        # Escolhe uma mensagem realista
+        message = random.choice(file_info["messages"])
+        
+        if git_commit(filepath, message):
             commits_done += 1
-            log.info("  [%d/%d] Commit OK — \"%s\" (number=%d)",
-                     i + 1, num_commits, message, current)
+            log.info("  [%d/%d] Commit OK — \"%s\" (%s)",
+                     i + 1, num_commits, message, filepath)
 
     # 4. Push único com todos os commits
     if commits_done > 0:
@@ -210,22 +230,13 @@ def main(catch_up: bool = False) -> None:
     else:
         log.warning("Nenhum commit foi realizado.")
 
-    # 5. Reagendar para amanhã
-    update_cron_with_random_time()
-
     log.info("Bot finalizado.")
     log.info("=" * 50)
 
 
 if __name__ == "__main__":
-    is_catch_up = "--catch-up" in sys.argv
     try:
-        main(catch_up=is_catch_up)
+        main()
     except Exception as e:
         log.exception("Erro fatal: %s", e)
-        # Mesmo com erro, tenta reagendar para não morrer para sempre
-        try:
-            update_cron_with_random_time()
-        except Exception:
-            pass
         exit(1)
